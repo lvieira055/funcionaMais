@@ -17,9 +17,12 @@ interface FieldProps{
     control: any; 
     className?: string;
     placeholder?: string;
-}
+    value?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-export function Field({ fieldName, control,  className, placeholder }: FieldProps){
+
+export function Field({ fieldName, control,  className, placeholder, value, onChange }: FieldProps){
     const formSchema = z.object({
         [fieldName]: z.string().min(2, {
           message: `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least 2 characters.`,
@@ -41,9 +44,18 @@ export function Field({ fieldName, control,  className, placeholder }: FieldProp
           name={fieldName}
           render={({ field }) => (
               <FormItem className={className}>
-              <FormLabel>{PrimeiraMaiuscula}</FormLabel>
+              {/* <FormLabel>{PrimeiraMaiuscula}</FormLabel> */}
+              <h3 className="-mb-2 text-gray-400 font-semibold">{PrimeiraMaiuscula}</h3>
               <FormControl>
-                <Input placeholder={placeholder} {...field} />
+              <Input
+                  placeholder={placeholder}
+                  {...field}
+                  value={value}
+                  onChange={(event) => {
+                    field.onChange(event); // Atualiza o estado do react-hook-form
+                    onChange?.(event); // Atualiza o estado do componente pai (se definido)
+                  }}
+                />
               </FormControl>
               {/* <FormDescription>
                 This is your public display {fieldName}.
