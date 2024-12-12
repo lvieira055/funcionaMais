@@ -19,10 +19,11 @@ interface FieldProps{
     placeholder?: string;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: any;
 };
 
 
-export function Field({ fieldName, control,  className, placeholder, value, onChange }: FieldProps){
+export function Field({ fieldName, control,  className, placeholder, value, onChange, disabled }: FieldProps){
     const formSchema = z.object({
         [fieldName]: z.string().min(2, {
           message: `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least 2 characters.`,
@@ -42,6 +43,7 @@ export function Field({ fieldName, control,  className, placeholder, value, onCh
         <FormField
           control={form.control}
           name={fieldName}
+          disabled={disabled}
           render={({ field }) => (
               <FormItem className={className}>
               {/* <FormLabel>{PrimeiraMaiuscula}</FormLabel> */}
