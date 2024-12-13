@@ -165,7 +165,7 @@ export function EmployeForm() {
         onSubmit={handleSubmit}
         className="self-center w-1/2 flex flex-col p-2 shadow-2xl bg-white rounded-md mt-6"
       >
-        <h1 className="text-2xl font-bold text-gray-500 mb-7">Funcionário</h1>
+        <h1 className="text-2xl font-bold text-gray-500 mb-7 self-center">Funcionário</h1>
         <div className="flex flex-col">
           <Field
             fieldName="ID"

@@ -15,7 +15,7 @@ export default function RootLayout({
       <aside>
         <SidebarTrigger/>
       </aside>
-      <main className="relative flex flex-col items-center w-full min-h-full mx-1">
+      <main className="relative flex flex-col items-center w-full">
         {children}
       </main>
     </SidebarProvider>

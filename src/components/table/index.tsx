@@ -69,11 +69,11 @@ export function CustomTable() {
   }, []);
 
   return (
-        <div className="container w-full flex items-center border-2 border-x-2 border-zinc-600 rounded-md">
+        <div className="container w-full flex items-center">
             <Table className="">
             <TableCaption>Uma lista de seus funcionários.</TableCaption>
-            <TableHeader>
-                <TableRow className="bg-zinc-400 text-nowrap">
+            <TableHeader className="border-1 rounded-md">
+                <TableRow className="bg-zinc-300 text-nowrap">
                 {props.map((column, index) => (
                     <TableHead
                     key={index}
