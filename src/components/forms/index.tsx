@@ -3,10 +3,20 @@ import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Field } from "@/components/form-field";
+import { useSearchParams } from "next/navigation";
+import {useEffect, useState } from "react"
+import { Calendar as CalendarIcon } from "lucide-react"
+ 
+import { cn } from "@/lib/utils"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 import {
   Select,
@@ -15,19 +25,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import React, { useEffect, useState } from "react";
-import DatePicker from "../date-input";
-import { useSearchParams } from "next/navigation";
+
 
 export function EmployeForm() {
   const searchParams = useSearchParams();
-  const [id, setId] = useState(searchParams.get("id") || "");
+  const [id, setId] = useState(searchParams.get("id") || ""); 
   const [nome, setNome] = useState(searchParams.get("nome") || "");
   const [sobrenome, setSobrenome] = useState(searchParams.get("sobrenome") || "");
   const [email, setEmail] = useState(searchParams.get("email") || "");
   const [cargo, setCargo] = useState(searchParams.get("cargo") || "");
   const [contrato, setContrato] = useState(searchParams.get("contrato") || "");
-  const [dataVencimento, setDataVencimento] = useState<Date | null>(searchParams.get("dataVencimento") ? new Date(searchParams.get("dataVencimento")!) : null);
+  const [dataVencimento, setDataVencimento] = useState<Date>();
+  const [date, setDate] = useState<Date>();
   const [endereco, setEndereco] = useState(searchParams.get("endereco") || "");
   const [cidade, setCidade] = useState(searchParams.get("cidade") || "");
   const [estado, setEstado] = useState(searchParams.get("estado") || "");
@@ -44,13 +53,11 @@ export function EmployeForm() {
       nome: nome || "",
     },
   });
-
+  
   // Função de envio do formulário
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const formattedDataVencimento = dataVencimento ? format(dataVencimento, "dd/MM/yy") : null;
-
+    const formattedDataVencimento = dataVencimento ? format(dataVencimento, "dd/MM/yyyy") : null;
     const formData = {
       nome,
       sobrenome,
@@ -66,7 +73,7 @@ export function EmployeForm() {
 
     try {
       const url = id ? `http://localhost:3000/funcionarios/${id}` : "http://localhost:3000/funcionarios";
-      const method = id ? "PUT" : "POST"; // Se tem ID, atualiza (PUT), caso contrário, cria novo (POST)
+      const method = id ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
@@ -80,14 +87,13 @@ export function EmployeForm() {
         const data = await response.json();
         console.log("Funcionário salvo ou atualizado:", data);
 
-        // Resetar campos após sucesso
         setId("");
         setNome("");
         setSobrenome("");
         setEmail("");
         setCargo("");
         setContrato("");
-        setDataVencimento(null);
+        setDataVencimento(new Date());
         setEndereco("");
         setCidade("");
         setEstado("");
@@ -102,6 +108,24 @@ export function EmployeForm() {
       alert("Erro ao salvar ou atualizar funcionário.");
     }
   };
+  function formateDate(date:string){
+    console.log('como chegou '+date);
+    if(!date){
+      const temp = new Date();
+      const temp2 = temp.toLocaleDateString("pt-BR");
+      console.log('1 - '+temp2);
+      return new Date(temp2);
+    }else{
+     const listaDate = date.split('/');
+     const dia = listaDate[0];
+     const mes = listaDate[1];
+     const ano = listaDate[2];
+     const DataBrasil = mes+'/'+dia+'/'+ano;
+     const auxData = new Date(DataBrasil);
+     auxData.toLocaleDateString("pt-BR");
+      return auxData;
+    }
+  }
 
   useEffect(() => {
     if (id) {
@@ -110,16 +134,19 @@ export function EmployeForm() {
           const response = await fetch(`http://localhost:3000/funcionarios/${id}`);
           if (response.ok) {
             const data = await response.json();
-            // Preencher o formulário com os dados do funcionário
+            console.log('como veio -'+data.dataVencimento);
+            
+            // const ajusteData = formateDate(data.dataVencimento)
+            setId(data.id);
             setNome(data.nome);
             setSobrenome(data.sobrenome);
             setEmail(data.email);
             setCargo(data.cargo);
             setContrato(data.contrato);
-            setDataVencimento(data.dataVencimento ? new Date(data.dataVencimento) : null);
+            setDataVencimento(formateDate(data.dataVencimento));
             setEndereco(data.endereco);
             setCidade(data.cidade);
-            setEstado(data.estado);
+            setEstado(data.estado);            
           } else {
             console.error("Erro ao buscar dados do funcionário:", response.statusText);
           }
@@ -190,11 +217,28 @@ export function EmployeForm() {
                   <SelectItem value="outro">Outro</SelectItem>
                 </SelectContent>
               </Select>
-              <DatePicker
-                label="Data de Vencimento"
-                value={dataVencimento} // Estado do componente pai
-                onChange={(date) => setDataVencimento(date)} // Atualiza o estado do pai
-              />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className={cn(
+                      "w-[280px] justify-start text-left font-normal",
+                      !dataVencimento && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {dataVencimento ? format(dataVencimento, "dd/MM/yyyy") : <span>Selecione uma data</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={dataVencimento}
+                    onSelect={setDataVencimento}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
         </div>

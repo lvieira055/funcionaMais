@@ -35,13 +35,10 @@ export function CustomTable() {
     }
   };
 
-  const redirecionarCadastro = (funcionario:any) => {
-    // Constrói a URL com query strings
-    console.log(funcionario);
-    const queryString = new URLSearchParams(funcionario).toString();
-    
-    router.push(`/cadastro?${queryString}`);
+  const redirecionarCadastro = (id:string) => {
+    router.push(`/cadastro?id=${id}`);
   };
+
   async function deleteFuncionario(id:string) {
     if(!id){
       alert("ID não encontrado")
@@ -67,7 +64,6 @@ export function CustomTable() {
     }
   };
 
-  // Efeito para carregar os dados ao montar o componente
   useEffect(() => {
     fetchFuncionarios();
   }, []);
@@ -102,7 +98,7 @@ export function CustomTable() {
                     ))}
                     <TableCell key={index} className="font-medium">{
                         <div className="flex flex-row gap-1">
-                            <ActionButton name="Alterar" style="" onClick={()=>redirecionarCadastro(funcionario)
+                            <ActionButton name="Alterar" style="" onClick={()=>redirecionarCadastro(funcionario.id)
                             } />
                             <ActionButton name="Excluir" style="bg-red-500 font-bold" onClick={()=>deleteFuncionario(funcionario.id)
                             }/>
