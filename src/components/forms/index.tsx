@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Label } from "../ui/label";
 
 
 export function EmployeForm() {
@@ -163,9 +164,8 @@ export function EmployeForm() {
     <Form {...form}>
       <form
         onSubmit={handleSubmit}
-        className="self-center w-1/2 flex flex-col p-2 shadow-2xl bg-white rounded-md mt-6"
+        className="self-center w-full h-full flex flex-col p-2 bg-white rounded-md"
       >
-        <h1 className="text-2xl font-bold text-gray-500 mb-7 self-center">Funcionário</h1>
         <div className="flex flex-col">
           <Field
             fieldName="ID"
@@ -301,5 +301,30 @@ export function EmployeForm() {
         </div>
       </form>
     </Form>
+  );
+}
+
+interface SectorProps{
+  label: string,
+  placeholder?: string,
+  data?: object,
+}
+export function FormSector({label, placeholder, data}:SectorProps){
+  const setores = ["Administrativo", 'Engenharia','Almoxarifado']
+  return (
+    <div>
+      <Label>{label}</Label>
+        <Select>
+            <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder={placeholder}/>
+            </SelectTrigger>
+            <SelectContent>
+              {setores.map((setor, index)=>(              
+                <SelectItem key={index} value={setor}>{setor}</SelectItem>
+              ))};
+
+            </SelectContent>
+        </Select>     
+      </div>
   );
 }

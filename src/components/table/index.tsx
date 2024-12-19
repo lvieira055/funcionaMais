@@ -9,16 +9,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
 import ActionButton from "./actionButton";
-import { log } from "console";
 import { useRouter } from "next/navigation";
 
 
 export function CustomTable() {
   const router = useRouter();
-  const [listaFuncionarios, setListaFuncionarios] = useState([]);
-  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState<any>(null);
+  const [listaFuncionarios, setListaFuncionarios] = useState<Array<any>>([]);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState<object>();
   const props = ["nomeCompleto", "cargo", "contrato", "dataVencimento"];
 
   // Função para buscar os dados
@@ -73,7 +71,7 @@ export function CustomTable() {
             <Table>
             <TableCaption>Uma lista de seus funcionários.</TableCaption>
             <TableHeader>
-                <TableRow className="bg-zinc-300 text-nowrap">
+                <TableRow className="text-nowrap">
                 {props.map((column, index) => (
                     <TableHead
                     key={index}
@@ -87,7 +85,7 @@ export function CustomTable() {
             </TableHeader>
             <TableBody>
                 {listaFuncionarios.map((funcionario, index) => (
-                    <TableRow key={index} className="bg-zinc-50">
+                    <TableRow key={index}>
                     {props.map((prop, propIndex) => (
                         <TableCell key={propIndex} className="font-medium">
                         {funcionario[prop]}
@@ -95,9 +93,9 @@ export function CustomTable() {
                     ))}
                     <TableCell key={index} className="font-medium">{
                         <div className="flex flex-row gap-1">
-                            <ActionButton name="Alterar" style="" onClick={()=>redirecionarCadastro(funcionario.id)
+                            <ActionButton name="Alterar" style="rounded-lg" onClick={()=>redirecionarCadastro(funcionario.id)
                             } />
-                            <ActionButton name="Excluir" style="bg-red-500 font-bold hover:bg-red-600" onClick={()=>deleteFuncionario(funcionario.id)
+                            <ActionButton name="Excluir" style="bg-red-500 font-bold hover:bg-red-600 rounded-lg" onClick={()=>deleteFuncionario(funcionario.id)
                             }/>
                         </div>}
                     </TableCell>

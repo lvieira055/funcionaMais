@@ -72,7 +72,7 @@ export default function Chart({ title, description, data, footer }: ChartProps) 
               dataKey="branch"
               type="category"
               tickLine={false}
-              tickMargin={2}
+              tickMargin={0}
               axisLine={false}
               tickFormatter={(value) =>
                 chartConfig[value as keyof typeof chartConfig]?.label
@@ -88,8 +88,7 @@ export default function Chart({ title, description, data, footer }: ChartProps) 
               layout="vertical"
               radius={5}
               isAnimationActive
-              // Adicionando a configuração dinâmica de cores
-              fill={(entry) => entry.fill!}
+              // fill={(entry:any) => entry.fill!}
             />
           </BarChart>
         </ChartContainer>

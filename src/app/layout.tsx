@@ -12,10 +12,10 @@ export default function RootLayout({
     <body>       
     <SidebarProvider>
       <AppSidebar />
-      <aside>
+      <aside className="bg-secondary">
         <SidebarTrigger/>
       </aside>
-      <main className="relative flex flex-col items-center w-full">
+      <main className="relative flex flex-col items-center w-full bg-background">
         {children}
       </main>
     </SidebarProvider>

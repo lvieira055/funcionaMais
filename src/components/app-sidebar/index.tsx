@@ -42,7 +42,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="dark">
+    <Sidebar>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Navegar</SidebarGroupLabel>
@@ -50,7 +50,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton className="hover:bg-slate-100" asChild>
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
