@@ -19,7 +19,7 @@ export function CustomTable() {
   const router = useRouter();
   const [listaFuncionarios, setListaFuncionarios] = useState([]);
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState<any>(null);
-  const props = ["id","nomeCompleto", "cargo", "contrato", "dataVencimento"];
+  const props = ["nomeCompleto", "cargo", "contrato", "dataVencimento"];
 
   // Função para buscar os dados
   const fetchFuncionarios = async () => {
@@ -69,10 +69,10 @@ export function CustomTable() {
   }, []);
 
   return (
-        <div className="container w-full flex items-center">
-            <Table className="">
+        <div className="container w-full flex items-center border-2 rounded-xl overflow-hidden">
+            <Table>
             <TableCaption>Uma lista de seus funcionários.</TableCaption>
-            <TableHeader className="border-1 rounded-md">
+            <TableHeader>
                 <TableRow className="bg-zinc-300 text-nowrap">
                 {props.map((column, index) => (
                     <TableHead
@@ -89,18 +89,15 @@ export function CustomTable() {
                 {listaFuncionarios.map((funcionario, index) => (
                     <TableRow key={index} className="bg-zinc-50">
                     {props.map((prop, propIndex) => (
-                        <TableCell
-                        key={propIndex}
-                        className="font-medium"
-                        >
+                        <TableCell key={propIndex} className="font-medium">
                         {funcionario[prop]}
-                    </TableCell>
+                        </TableCell>
                     ))}
                     <TableCell key={index} className="font-medium">{
                         <div className="flex flex-row gap-1">
                             <ActionButton name="Alterar" style="" onClick={()=>redirecionarCadastro(funcionario.id)
                             } />
-                            <ActionButton name="Excluir" style="bg-red-500 font-bold" onClick={()=>deleteFuncionario(funcionario.id)
+                            <ActionButton name="Excluir" style="bg-red-500 font-bold hover:bg-red-600" onClick={()=>deleteFuncionario(funcionario.id)
                             }/>
                         </div>}
                     </TableCell>
