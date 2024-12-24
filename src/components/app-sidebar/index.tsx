@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home, FormInputIcon, PersonStanding } from "lucide-react";
+import { Home, FormInputIcon, PersonStanding, Layers } from "lucide-react";
 
 const items = [
   {
@@ -28,11 +28,11 @@ const items = [
     url: "/funcionarios",
     icon: PersonStanding,
   },
-  // {
-  //   title: "Search",
-  //   url: "#",
-  //   icon: Search,
-  // },
+  {
+    title: "Cargos",
+    url: "/cargos",
+    icon: Layers,
+  },
   // {
   //   title: "Settings",
   //   url: "#",
