@@ -51,7 +51,46 @@ export default function ProfileForm() {
       vagas: 0,
     },
   });
-     
+
+  const fetchAllJobData = async () =>{
+    try {
+      const response = await fetch(`http://localhost:3000/cargos/`);
+      if (response.ok) {
+        const allData = await response.json();
+        setListaVagas(allData);
+      } else {
+        console.error("Erro ao buscar dados dos cargos:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+    }
+  }
+
+  async function deleteCargo(id:string) {
+    if(!id){
+      alert("ID não encontrado")
+      return;
+    }
+    try {
+      const response = await fetch(`http://localhost:3000/cargos/${id}`, {
+        method:"DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        alert("Cargo excluído com sucesso!");
+        fetchAllJobData();
+
+      } else {
+        alert("Erro ao excluir cargo.");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      alert("Erro ao excluir cargo.");
+    }
+  };
+
   const handleCheckboxChange = () => {
     setIsLimitChecked(!isLimitChecked);
   };
@@ -138,19 +177,6 @@ export default function ProfileForm() {
         }
       };
       fetchJobData();
-    }
-    const fetchAllJobData = async () =>{
-      try {
-        const response = await fetch(`http://localhost:3000/cargos/`);
-        if (response.ok) {
-          const allData = await response.json();
-          setListaVagas(allData);
-        } else {
-          console.error("Erro ao buscar dados dos cargos:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Erro na requisição:", error);
-      }
     }
     fetchAllJobData();
   }, [searchParams]);  
@@ -240,7 +266,7 @@ export default function ProfileForm() {
                   <TableCell>{vaga.vagas || 0}</TableCell>
                   <TableCell className="flex m-0">
                     <Button variant={"ghost"} className="p-1" onClick={()=>alteraCargo(vaga.id)}><Bolt/></Button>
-                    <Button variant={"ghost"} className="p-1"><Trash2/></Button>                          
+                    <Button variant={"ghost"} className="p-1" onClick={()=>deleteCargo(vaga.id)}><Trash2/></Button>                          
                   </TableCell>
                 </TableRow>
               ))}

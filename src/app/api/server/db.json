@@ -1,82 +1,44 @@
 {
   "cargos": [
     {
-      "cargo": "Analista de RH",
+      "cargo": "Gerente de RH",
       "tipoCargo": "Gerente",
-      "vagas": "2",
-      "id": "50dc"
-    },
-    {
-      "id": "9236",
-      "cargo": "Auxiliar de rh",
-      "tipoCargo": "Junior",
-      "vagas": "2"
-    },
-    {
-      "id": "dd56",
-      "cargo": "Gerente de produção",
-      "tipoCargo": "Gerente",
-      "vagas": "1"
-    },
-    {
-      "cargo": "Auxiliar Administrativo ",
-      "tipoCargo": "Auxiliar",
       "vagas": "",
-      "id": "d225"
+      "id": "8300"
     },
     {
-      "id": "213a",
-      "cargo": "Gerente Administrativo",
-      "tipoCargo": "Gerente",
-      "vagas": "1"
+      "id": "636c",
+      "cargo": "Analista de RH",
+      "tipoCargo": "Junior",
+      "vagas": ""
     },
     {
-      "id": "e098",
-      "cargo": "Auxiliar de produção",
+      "id": "5700",
+      "cargo": "Assistente de segurança do trabalho",
+      "tipoCargo": "Assistente",
+      "vagas": ""
+    },
+    {
+      "id": "52c5",
+      "cargo": "Auxiliar Administrativo ",
       "tipoCargo": "Auxiliar",
       "vagas": ""
     },
     {
+      "id": "4c2c",
       "cargo": "Assistente administrativo",
-      "tipoCargo": "Menor Aprendiz",
-      "vagas": "",
-      "id": "fa33"
+      "tipoCargo": "Assistente",
+      "vagas": ""
     }
   ],
   "funcionarios": [
-    {
-      "nome": "Barbara ",
-      "sobrenome": "Julia",
-      "nomeCompleto": "Barbara  Julia",
-      "email": "juliabarbara@test.com",
-      "cargo": "Auxiliar de RH",
-      "contrato": "contratado",
-      "dataVencimento": "12/03/2024",
-      "endereco": "Rua teste da silva",
-      "cidade": "Cascavel",
-      "estado": "PR",
-      "id": "8ce4"
-    },
-    {
-      "nome": "Pedro",
-      "sobrenome": "Simbiote",
-      "nomeCompleto": "Pedro Simbiote",
-      "email": "PS@gmail.com",
-      "cargo": "Auxiliar Administrativo",
-      "contrato": "contratado",
-      "dataVencimento": "13/12/2024",
-      "endereco": "Rua teste da silva",
-      "cidade": "Cascavel",
-      "estado": "PR",
-      "id": "29a4"
-    },
     {
       "nome": "Maria",
       "sobrenome": "Jose",
       "nomeCompleto": "Maria Jose",
       "email": "josemaria@test.com",
-      "cargo": "Auxiliar de enfermagem",
-      "contrato": "desligado",
+      "cargo": "Gerente de RH",
+      "contrato": "contratado",
       "dataVencimento": "24/12/2024",
       "endereco": "Rua Tamandará",
       "cidade": "Toledo",
@@ -84,37 +46,11 @@
       "id": "522e"
     },
     {
-      "id": "22ca",
-      "nome": "Reginaldo",
-      "sobrenome": "Galate",
-      "nomeCompleto": "Reginaldo Galate",
-      "email": "Teste@gmail.com",
-      "cargo": "Mestre de obras",
-      "contrato": "contratado",
-      "dataVencimento": "10/09/2024",
-      "endereco": "Avenida das flores",
-      "cidade": "Ubiratã",
-      "estado": "PR"
-    },
-    {
-      "nome": "Lucas ",
-      "sobrenome": "Vieira",
-      "nomeCompleto": "Lucas  Vieira",
-      "email": "lucasteste@gmail.com",
-      "cargo": "Analista de Ti",
-      "contrato": "contratado",
-      "dataVencimento": "15/08/2024",
-      "endereco": "Rua 13 de abril",
-      "cidade": "Cascavel",
-      "estado": "PR",
-      "id": "bb8d"
-    },
-    {
       "nome": "Gustavo",
       "sobrenome": "Mazutti",
       "nomeCompleto": "Gustavo Mazutti",
       "email": "Teste@mazutti.ecom",
-      "cargo": "Analista de suporte.",
+      "cargo": "Auxiliar Administrativo ",
       "contrato": "outro",
       "dataVencimento": "16/02/2024",
       "endereco": "Rua Fernandes ",
@@ -127,26 +63,13 @@
       "sobrenome": "Scalon",
       "nomeCompleto": "Fernando Scalon",
       "email": "Teste@scalon",
-      "cargo": "Gerente de transporte",
+      "cargo": "Assistente de segurança do trabalho",
       "contrato": "outro",
       "dataVencimento": "01/08/2024",
       "endereco": "Rua Londrina seila o numero",
       "cidade": "Cafelandia",
       "estado": "PR",
       "id": "bd05"
-    },
-    {
-      "id": "2927",
-      "nome": "teste",
-      "sobrenome": "teste2",
-      "nomeCompleto": "teste teste2",
-      "email": "sadasd",
-      "cargo": "alo",
-      "contrato": "",
-      "dataVencimento": "18/12/2024",
-      "endereco": "asdasd",
-      "cidade": "q12sa",
-      "estado": "AP"
     }
   ]
 }

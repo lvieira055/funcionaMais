@@ -163,6 +163,8 @@ export function EmployeForm() {
           const data = await response.json();
           auxiliaLista.push(...data);
           setListaCargos(auxiliaLista); 
+          console.log(auxiliaLista);
+          
           // alert(id ? "Cargo alterado com sucesso!" : "Cargo salvo com sucesso!");
 
         } else {
@@ -223,9 +225,10 @@ export function EmployeForm() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="contratado">Contratado</SelectItem>
-                  {/* { listaCargos.map(()=>(
-                    
-                  ))} */}
+                  { listaCargos.map((cargo, indice)=> {
+                    return  <SelectItem key={cargo.id} value={cargo.cargo}>{cargo.cargo}</SelectItem>
+
+                  })}
                 </SelectContent>
               </Select>
 
