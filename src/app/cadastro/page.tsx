@@ -1,5 +1,5 @@
 import { Field } from "@/components/form-field";
-import { EmployeForm, FormSector } from "@/components/forms";
+import { EmployeForm } from "@/components/forms";
 
 export default function Cadastro(){
     return (
@@ -14,17 +14,6 @@ export default function Cadastro(){
                             <EmployeForm />
                     </div>
                 </div>
-                {/* <div className="container flex w-1/3 pt-14 pb-1 mx-2">
-                    <div className="container flex flex-col self-center w-full h-full rounded-xl border-2 overflow-hidden">
-                        <div className="container self-center border-2 p-2">
-                            <h1 className="text-start font-sans font-semibold text-xl">Setorização</h1>
-                        </div>
-                        <div className="flex flex-col h-full w-full bg-white p-3 gap-2">
-                            <FormSector label="Setor" placeholder="Escolha um setor" />
-                            <FormSector label="Equipe" placeholder="Escolha uma equipe" />
-                        </div>
-                    </div>
-                </div> */}
             </div>
         </div>
 

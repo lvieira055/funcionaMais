@@ -1,4 +1,48 @@
 {
+  "cargos": [
+    {
+      "cargo": "Analista de RH",
+      "tipoCargo": "Gerente",
+      "vagas": "2",
+      "id": "50dc"
+    },
+    {
+      "id": "9236",
+      "cargo": "Auxiliar de rh",
+      "tipoCargo": "Junior",
+      "vagas": "2"
+    },
+    {
+      "id": "dd56",
+      "cargo": "Gerente de produção",
+      "tipoCargo": "Gerente",
+      "vagas": "1"
+    },
+    {
+      "cargo": "Auxiliar Administrativo ",
+      "tipoCargo": "Auxiliar",
+      "vagas": "",
+      "id": "d225"
+    },
+    {
+      "id": "213a",
+      "cargo": "Gerente Administrativo",
+      "tipoCargo": "Gerente",
+      "vagas": "1"
+    },
+    {
+      "id": "e098",
+      "cargo": "Auxiliar de produção",
+      "tipoCargo": "Auxiliar",
+      "vagas": ""
+    },
+    {
+      "cargo": "Assistente administrativo",
+      "tipoCargo": "Menor Aprendiz",
+      "vagas": "",
+      "id": "fa33"
+    }
+  ],
   "funcionarios": [
     {
       "nome": "Barbara ",
@@ -27,7 +71,6 @@
       "id": "29a4"
     },
     {
-      "id": "522e",
       "nome": "Maria",
       "sobrenome": "Jose",
       "nomeCompleto": "Maria Jose",
@@ -36,8 +79,9 @@
       "contrato": "desligado",
       "dataVencimento": "24/12/2024",
       "endereco": "Rua Tamandará",
-      "cidade": "Casacavel",
-      "estado": "PR"
+      "cidade": "Toledo",
+      "estado": "PR",
+      "id": "522e"
     },
     {
       "id": "22ca",
@@ -53,7 +97,6 @@
       "estado": "PR"
     },
     {
-      "id": "bb8d",
       "nome": "Lucas ",
       "sobrenome": "Vieira",
       "nomeCompleto": "Lucas  Vieira",
@@ -62,11 +105,11 @@
       "contrato": "contratado",
       "dataVencimento": "15/08/2024",
       "endereco": "Rua 13 de abril",
-      "cidade": "Casacavel",
-      "estado": "PR"
+      "cidade": "Cascavel",
+      "estado": "PR",
+      "id": "bb8d"
     },
     {
-      "id": "d009",
       "nome": "Gustavo",
       "sobrenome": "Mazutti",
       "nomeCompleto": "Gustavo Mazutti",
@@ -75,7 +118,34 @@
       "contrato": "outro",
       "dataVencimento": "16/02/2024",
       "endereco": "Rua Fernandes ",
-      "cidade": "Aleatorio",
+      "cidade": "Cascavel",
+      "estado": "AP",
+      "id": "d009"
+    },
+    {
+      "nome": "Fernando",
+      "sobrenome": "Scalon",
+      "nomeCompleto": "Fernando Scalon",
+      "email": "Teste@scalon",
+      "cargo": "Gerente de transporte",
+      "contrato": "outro",
+      "dataVencimento": "01/08/2024",
+      "endereco": "Rua Londrina seila o numero",
+      "cidade": "Cafelandia",
+      "estado": "PR",
+      "id": "bd05"
+    },
+    {
+      "id": "2927",
+      "nome": "teste",
+      "sobrenome": "teste2",
+      "nomeCompleto": "teste teste2",
+      "email": "sadasd",
+      "cargo": "alo",
+      "contrato": "",
+      "dataVencimento": "18/12/2024",
+      "endereco": "asdasd",
+      "cidade": "q12sa",
       "estado": "AP"
     }
   ]

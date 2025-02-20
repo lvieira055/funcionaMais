@@ -27,13 +27,13 @@ import {
 } from "@/components/ui/select";
 import { Label } from "../ui/label";
 
-
 export function EmployeForm() {
   const searchParams = useSearchParams();
   const [id, setId] = useState(searchParams.get("id") || ""); 
   const [nome, setNome] = useState(searchParams.get("nome") || "");
   const [sobrenome, setSobrenome] = useState(searchParams.get("sobrenome") || "");
   const [email, setEmail] = useState(searchParams.get("email") || "");
+  const [listaCargos, setListaCargos] = useState<Array<any>>([]);
   const [cargo, setCargo] = useState(searchParams.get("cargo") || "");
   const [contrato, setContrato] = useState(searchParams.get("contrato") || "");
   const [dataVencimento, setDataVencimento] = useState<Date>();
@@ -55,7 +55,6 @@ export function EmployeForm() {
     },
   });
   
-  // Função de envio do formulário
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formattedDataVencimento = dataVencimento ? format(dataVencimento, "dd/MM/yyyy") : null;
@@ -128,16 +127,14 @@ export function EmployeForm() {
     }
   }
 
+
   useEffect(() => {
     if (id) {
       const fetchEmployeeData = async () => {
         try {
           const response = await fetch(`http://localhost:3000/funcionarios/${id}`);
           if (response.ok) {
-            const data = await response.json();
-            console.log('como veio -'+data.dataVencimento);
-            
-            // const ajusteData = formateDate(data.dataVencimento)
+            const data = await response.json();          
             setId(data.id);
             setNome(data.nome);
             setSobrenome(data.sobrenome);
@@ -158,14 +155,34 @@ export function EmployeForm() {
 
       fetchEmployeeData();
     }
-  }, [id]);
+    const FetchJobData = async () =>{
+      try {
+        const response = await fetch(`http://localhost:3000/cargos/`);
+        const auxiliaLista = [];
+        if (response.ok) {
+          const data = await response.json();
+          auxiliaLista.push(...data);
+          setListaCargos(auxiliaLista); 
+          // alert(id ? "Cargo alterado com sucesso!" : "Cargo salvo com sucesso!");
+
+        } else {
+          console.error("Erro ao salvar ou atualizar este cargo:", response.statusText);
+          alert("Erro ao salvar ou atualizar este cargo.");
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Erro ao salvar ou atualizar este cargo.");
+      }
+    }
+    FetchJobData();
+
+  }, [id])
 
   return (
     <Form {...form}>
       <form
         onSubmit={handleSubmit}
-        className="self-center w-full h-full flex flex-col p-2 bg-white rounded-md"
-      >
+        className="self-center w-full h-full flex flex-col p-2 bg-white rounded-md">
         <div className="flex flex-col">
           <Field
             fieldName="ID"
@@ -199,13 +216,19 @@ export function EmployeForm() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ex. test@hotmail.com"
             />
-            <Field
-              fieldName="cargo"
-              control={form.control}
-              value={cargo}
-              onChange={(e) => setCargo(e.target.value)}
-              placeholder="Ex. Auxiliar Administrativo"
-            />
+            <div className="flex flex-row gap-2">
+              <Select value={cargo}  onValueChange={(e) => setCargo(e)}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Contrato" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="contratado">Contratado</SelectItem>
+                  {/* { listaCargos.map(()=>(
+                    
+                  ))} */}
+                </SelectContent>
+              </Select>
+
             <div className="flex flex-row gap-2">
               <Select value={contrato} onValueChange={(value) => setContrato(value)}>
                 <SelectTrigger className="w-[180px]">
@@ -241,6 +264,7 @@ export function EmployeForm() {
               </Popover>
             </div>
           </div>
+        </div>
         </div>
         <div className="flex flex-col gap-2">
           <Field
