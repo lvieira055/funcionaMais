@@ -221,10 +221,9 @@ export function EmployeForm() {
             <div className="flex flex-row gap-2">
               <Select value={cargo}  onValueChange={(e) => setCargo(e)}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Contrato" />
+                  <SelectValue placeholder="Vaga" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="contratado">Contratado</SelectItem>
                   { listaCargos.map((cargo, indice)=> {
                     return  <SelectItem key={cargo.id} value={cargo.cargo}>{cargo.cargo}</SelectItem>
 

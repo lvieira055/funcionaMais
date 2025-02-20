@@ -183,7 +183,7 @@ export default function ProfileForm() {
 
   return (
     <div className="container flex flex-col h-screen w-4/6">
-      <div className="flex flex-col border rounded-lg m-5">
+      <div className="flex flex-col border rounded-lg m-5 bg-background">
         <div className="flex self-center font-bold mb-10 text-2xl">
           Cargos
         </div>
@@ -236,7 +236,7 @@ export default function ProfileForm() {
         </form>
       </div>
       {/* Lista de cargos */}
-      <div className="flex flex-col border m-5 rounded-lg">
+      <div className="flex flex-col border m-5 rounded-lg bg-background">
         <div>
           <h1 className="font-bold text-2xl text-center">Lista de cargos</h1>
         </div>
